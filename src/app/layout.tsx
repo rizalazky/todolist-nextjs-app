@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Roboto } from "next/font/google";
 import "./globals.css";
+import { Navbar, Sidebar } from "@/components";
 
-const inter = Inter({ subsets: ["latin"] });
+
+const inter = Roboto({ subsets : ['latin'] ,weight : '400'});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -14,9 +16,17 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+  
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={`${inter.className} flex max-h-screen h-screen overflow-y-hidden`}>
+        <Sidebar/>
+        <div className="flex-1 overflow-scroll">
+          <Navbar/>
+          {children}
+        </div>
+      </body>
     </html>
   );
 }
