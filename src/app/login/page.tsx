@@ -7,7 +7,7 @@ function LoginPage() {
   const [errorMessage, dispatch] = useFormState(authenticate, undefined)
 
   return (
-    <div className='flex h-screen justify-center items-center'>
+    <div className='flex h-screen justify-center items-center w-full'>
         <form className="min-w-[20%] mx-auto p-10 bg-slate-50 shadow-lg rounded-lg" action={dispatch}>
             <div className='w-full text-center text-xl mb-5 font-bold'>WELCOME</div>
             <div className="mb-5">

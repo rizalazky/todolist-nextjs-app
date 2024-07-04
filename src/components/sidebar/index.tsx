@@ -4,9 +4,14 @@
 import { Sidebar } from "flowbite-react";
 import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
-import { HiArrowSmRight, HiChartPie, HiInbox, HiShoppingBag, HiTable, HiUser, HiViewBoards, HiX } from "react-icons/hi";
+import { HiArrowSmRight, HiSun, HiDatabase, HiHome, HiTable, HiCheckCircle, HiStar, HiX } from "react-icons/hi";
 
-export default function Component() {
+interface taskList {
+    id : number,
+    list_desc : string
+};
+
+export default function Component({lists}:{lists : taskList[]}) {
     const [isOpen,setIsOpen]= useState(true)
     const pathname = usePathname()
     console.log(pathname)
@@ -23,27 +28,30 @@ export default function Component() {
                   </div>
                   <Sidebar.Items>
                       <Sidebar.ItemGroup>
-                      <Sidebar.Item href="#" icon={HiChartPie}>
-                          Dashboard
-                      </Sidebar.Item>
-                      <Sidebar.Item href="#" icon={HiViewBoards} label="Pro" labelColor="dark">
-                          Kanban
-                      </Sidebar.Item>
-                      <Sidebar.Item href="#" icon={HiInbox} label="3">
-                          Inbox
-                      </Sidebar.Item>
-                      <Sidebar.Item href="#" icon={HiUser}>
-                          Users
-                      </Sidebar.Item>
-                      <Sidebar.Item href="#" icon={HiShoppingBag}>
-                          Products
-                      </Sidebar.Item>
-                      <Sidebar.Item href="#" icon={HiArrowSmRight}>
-                          Sign In
-                      </Sidebar.Item>
-                      <Sidebar.Item href="#" icon={HiTable}>
-                          Sign Up
-                      </Sidebar.Item>
+                        <Sidebar.Item href="/myday" icon={HiSun}>
+                            My Day
+                        </Sidebar.Item>
+                        <Sidebar.Item href="/important" icon={HiStar} labelColor="dark">
+                            Important
+                        </Sidebar.Item>
+                        <Sidebar.Item href="all" icon={HiDatabase} label="3">
+                            All
+                        </Sidebar.Item>
+                        <Sidebar.Item href="/completed" icon={HiCheckCircle}>
+                            Completed
+                        </Sidebar.Item>
+                        <Sidebar.Item href="task" icon={HiHome}>
+                            Task
+                        </Sidebar.Item>
+                        {
+                            lists.map((list,index)=>{
+                                return (
+                                    <Sidebar.Item href={`/${list.id}`} key={list.id} icon={HiTable}>
+                                        {list.list_desc}
+                                    </Sidebar.Item>
+                                )
+                            })
+                        }
                       </Sidebar.ItemGroup>
                   </Sidebar.Items>
               </Sidebar>

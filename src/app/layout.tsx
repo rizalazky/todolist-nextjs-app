@@ -21,11 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} flex max-h-screen h-screen overflow-y-hidden`}>
-        <Sidebar/>
-        <div className="flex-1 overflow-scroll">
-          <Navbar/>
-          {children}
-        </div>
+        {children}
       </body>
     </html>
   );
