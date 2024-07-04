@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import { useFormState, useFormStatus } from 'react-dom'
-import { authenticate } from '../lib/actions'
+import { authenticate } from '../../lib/actions'
 
 function LoginPage() {
   const [errorMessage, dispatch] = useFormState(authenticate, undefined)

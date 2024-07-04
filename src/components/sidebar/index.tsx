@@ -5,6 +5,7 @@ import { Sidebar } from "flowbite-react";
 import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 import { HiArrowSmRight, HiSun, HiDatabase, HiHome, HiTable, HiCheckCircle, HiStar, HiX } from "react-icons/hi";
+import { AddNewListButton } from "..";
 
 interface taskList {
     id : number,
@@ -26,7 +27,7 @@ export default function Component({lists}:{lists : taskList[]}) {
                           <HiX/>
                       </button>
                   </div>
-                  <Sidebar.Items>
+                  <Sidebar.Items className="h-[92%]">
                       <Sidebar.ItemGroup>
                         <Sidebar.Item href="/myday" icon={HiSun}>
                             My Day
@@ -43,7 +44,10 @@ export default function Component({lists}:{lists : taskList[]}) {
                         <Sidebar.Item href="task" icon={HiHome}>
                             Task
                         </Sidebar.Item>
-                        {
+                        
+                      </Sidebar.ItemGroup>
+                      <Sidebar.ItemGroup >
+                      {
                             lists.map((list,index)=>{
                                 return (
                                     <Sidebar.Item href={`/${list.id}`} key={list.id} icon={HiTable}>
@@ -51,9 +55,12 @@ export default function Component({lists}:{lists : taskList[]}) {
                                     </Sidebar.Item>
                                 )
                             })
-                        }
+                        }  
                       </Sidebar.ItemGroup>
                   </Sidebar.Items>
+                  <div>
+                    <AddNewListButton/>
+                  </div>
               </Sidebar>
           </>
         );

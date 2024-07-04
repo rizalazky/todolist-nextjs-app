@@ -6,7 +6,10 @@ import Input from './input'
 import Container from './container'
 import DragableCard from './dragablecard'
 import ContainerList from './ContainerList'
+import AddNewListButton from './addnewlistbutton'
+import Modal from './modal'
+
 
 export{
-    Sidebar, Navbar, Card, Input ,Container, DragableCard, ContainerList
+    Sidebar, Navbar, Card, Input ,Container, DragableCard, ContainerList,AddNewListButton,Modal
 }

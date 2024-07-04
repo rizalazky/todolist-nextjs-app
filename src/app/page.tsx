@@ -1,5 +1,6 @@
 import {  ContainerList, Input, Navbar, Sidebar } from "@/components";
-import { getList } from "./lib/actions";
+import { getList } from "../lib/actions";
+import Link from "next/link";
 
 
 
