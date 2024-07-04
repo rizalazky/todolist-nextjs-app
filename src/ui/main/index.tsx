@@ -1,9 +1,30 @@
+import { ContainerList, Input, Sidebar } from '@/components';
+import { getList } from '@/lib/actions';
 import React from 'react'
 
-function index() {
+interface ItemInterface {
+  list_desc:string,
+  id:number
+}
+
+async function Main({items,pageTitle}:{items:ItemInterface[],pageTitle :string}) {
+  const getListAPI = await getList();
   return (
-    <div>index</div>
+    <>
+      <Sidebar lists={getListAPI.data}/>
+      <div className="flex-1 overflow-scroll">
+          <div className="sticky top-0 px-10 py-4 bg-gray-50 w-full">
+            <h1 className='text-2xl font-bold'>{pageTitle}</h1>
+          </div>
+          <main className="flex flex-col w-full h-full px-10">
+            <ContainerList items={items}/>
+          </main>
+          <div className="sticky bottom-10 px-20 w-full">
+            <Input/>
+          </div>
+      </div>
+    </>
   )
 }
 
-export default index
+export default Main
