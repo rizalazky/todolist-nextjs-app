@@ -29,19 +29,19 @@ export default function Component({lists}:{lists : taskList[]}) {
                   </div>
                   <Sidebar.Items className="h-[92%]">
                       <Sidebar.ItemGroup>
-                        <Sidebar.Item href="/myday" icon={HiSun}>
+                        <Sidebar.Item href="/list/myday" icon={HiSun}>
                             My Day
                         </Sidebar.Item>
-                        <Sidebar.Item href="/important" icon={HiStar} labelColor="dark">
+                        <Sidebar.Item href="/list/important" icon={HiStar} labelColor="dark">
                             Important
                         </Sidebar.Item>
                         <Sidebar.Item href="all" icon={HiDatabase} label="3">
                             All
                         </Sidebar.Item>
-                        <Sidebar.Item href="/completed" icon={HiCheckCircle}>
+                        <Sidebar.Item href="/list/completed" icon={HiCheckCircle}>
                             Completed
                         </Sidebar.Item>
-                        <Sidebar.Item href="task" icon={HiHome}>
+                        <Sidebar.Item href="/list/task" icon={HiHome}>
                             Task
                         </Sidebar.Item>
                         
@@ -50,7 +50,7 @@ export default function Component({lists}:{lists : taskList[]}) {
                       {
                             lists.map((list,index)=>{
                                 return (
-                                    <Sidebar.Item href={`/${list.id}`} key={list.id} icon={HiTable}>
+                                    <Sidebar.Item href={`/list/${list.id}`} key={list.id} icon={HiTable}>
                                         {list.list_desc}
                                     </Sidebar.Item>
                                 )
