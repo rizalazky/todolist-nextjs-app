@@ -28,6 +28,25 @@ import { permanentRedirect, redirect } from "next/navigation";
     return response;
   }
 
+  export async function getListDetail(id:string){
+    const sessionData = await getSessionData();
+    const token = await sessionData.token
+    const apiGetList = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/${id}/items`,{
+      headers : {
+        'Content-Type' : 'application/json',
+        "Authorization" : `Bearer ${token}`
+      },
+      method : 'GET'
+    })
+    
+    if(!apiGetList.ok){
+      return false;
+    }
+    const response = await apiGetList.json()
+
+    return response;
+  }
+
   export async function addList(formData:FormData){
     console.log('FORMDATA',formData.get('list_desc'))
     try {

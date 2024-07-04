@@ -4,10 +4,15 @@ import { DndProvider } from 'react-dnd'
 import Container from '../container'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 
-function index() {
+interface ItemInterface {
+  list_desc:string,
+  id:number
+}
+
+function index({items}:{items : ItemInterface[] }) {
   return (
     <DndProvider backend={HTML5Backend}>
-        <Container/>
+        <Container items={items}/>
     </DndProvider> 
   )
 }

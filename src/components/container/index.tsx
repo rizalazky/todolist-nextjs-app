@@ -3,6 +3,7 @@ import update from 'immutability-helper'
 import type { FC } from 'react'
 import { useCallback, useState } from 'react'
 import DragableCard from '../dragablecard'
+import { text } from 'stream/consumers'
 
 
 
@@ -15,38 +16,18 @@ export interface ContainerState {
   cards: Item[]
 }
 
-const Container: FC = () => {
+interface ItemInterface {
+  list_desc:string,
+  id:number
+}
+
+const Container = ({items} : {items:ItemInterface[]}) => {
   {
-    const [cards, setCards] = useState([
-      {
-        id: 1,
-        text: 'Write a cool JS library',
-      },
-      {
-        id: 2,
-        text: 'Make it generic enough',
-      },
-      {
-        id: 3,
-        text: 'Write README',
-      },
-      {
-        id: 4,
-        text: 'Create some examples',
-      },
-      {
-        id: 5,
-        text: 'Spam in Twitter and IRC to promote it (note that this element is taller than the others)',
-      },
-      {
-        id: 6,
-        text: '???',
-      },
-      {
-        id: 7,
-        text: 'PROFIT',
-      },
-    ])
+    console.log('items',items)
+    const [cards, setCards] = useState(items?.map((item)=>({
+      id: item.id,
+      text : item.list_desc
+    })) || [])
 
     const moveCard = useCallback((dragIndex: number, hoverIndex: number) => {
       setCards((prevCards: Item[]) =>
