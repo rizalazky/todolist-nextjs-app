@@ -8,8 +8,9 @@ import DragableCard from './dragablecard'
 import ContainerList from './ContainerList'
 import AddNewListButton from './addnewlistbutton'
 import Modal from './modal'
+import HeaderMain from './headermain'
 
 
 export{
-    Sidebar, Navbar, Card, Input ,Container, DragableCard, ContainerList,AddNewListButton,Modal
+    Sidebar, Navbar, Card, Input ,Container, DragableCard, ContainerList,AddNewListButton,Modal,HeaderMain
 }

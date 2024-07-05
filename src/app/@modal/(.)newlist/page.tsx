@@ -6,7 +6,7 @@ import React from 'react'
 function Page() {
   return (
       <Modal >
-        <FormAddNewList/>
+        <FormAddNewList value=''/>
       </Modal>
   )
 }

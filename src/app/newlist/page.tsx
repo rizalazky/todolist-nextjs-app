@@ -7,7 +7,7 @@ function Page() {
   return (
     
       <Modal >
-        <FormAddNewList/>
+        <FormAddNewList value=''/>
       </Modal>
    
   )

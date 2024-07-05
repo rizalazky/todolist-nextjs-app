@@ -6,9 +6,10 @@ async function ListPage({params}:{params:{ slug : string}}) {
   const itemList = await getListDetail(params.slug)
   const pageTitle = itemList?.data?.list_desc
   const items = itemList?.data?.Items
+  const idList = itemList?.data?.id
   
   return (
-    <Main pageTitle={pageTitle} items={items}/>
+    <Main pageTitle={pageTitle} items={items} id={idList}/>
   )
 }
 
