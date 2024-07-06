@@ -16,9 +16,10 @@ import { permanentRedirect, redirect } from "next/navigation";
         'Content-Type' : 'application/json',
         "Authorization" : `Bearer ${token}`
       },
-      method : 'GET'
+      method : 'GET',
+      cache : "no-store"
     })
-    console.log(apiGetList)
+    // console.log(apiGetList)
     if(!apiGetList.ok){
       return false;
     }
@@ -36,7 +37,8 @@ import { permanentRedirect, redirect } from "next/navigation";
         'Content-Type' : 'application/json',
         "Authorization" : `Bearer ${token}`
       },
-      method : 'GET'
+      method : 'GET',
+      cache : "no-store"
     })
     
     if(!apiGetList.ok){
@@ -67,14 +69,14 @@ import { permanentRedirect, redirect } from "next/navigation";
         return false;
       }
       const response = await apiAddNewList.json()
-      console.log(response)
+      // console.log(response)
       if(response.status == 'FAIL'){
         return false;
       }
 
       
     } catch (error) {
-      console.log(error)
+      // console.log(error)
       return error;
     }
     revalidatePath('/')
@@ -110,6 +112,51 @@ import { permanentRedirect, redirect } from "next/navigation";
     }
     revalidatePath('/')
     permanentRedirect(`/list/${formData.get('id')}`);
+  }
+
+  export async function addTask(formData:FormData){
+    let idList = formData.get('list_id');
+    if(!idList){
+      console.log('ID LIST', idList);
+      return false;
+      const formData = new FormData();
+      formData.append('list_desc','Untitle List');
+      const addNewList = await addList(formData);
+      // const response = await addNewList.json()
+      // idList = response.data.id
+    }
+
+    try {
+      const sessionData = await getSessionData();
+      const token = await sessionData.token
+      const apiAddNewTask = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/${idList}/items`,{
+        headers : {
+          'Content-Type' : 'application/json',
+          "Authorization" : `Bearer ${token}`
+        },
+        method : 'POST',
+        body:JSON.stringify({
+          itemDesc : formData.get('list_desc')
+        })
+      })
+     
+      if(!apiAddNewTask.ok){
+        return false;
+      }
+      const response = await apiAddNewTask.json()
+      console.log('resp',response)
+      if(response.status == 'FAIL'){
+        return false;
+      }
+
+      
+    } catch (error) {
+      console.log('err',error)
+      return error;
+    }
+
+    // revalidatePath(`/`)
+    redirect(`/list/${idList}`);
   }
  
 export async function authenticate(_currentState: unknown,formData: FormData) {
