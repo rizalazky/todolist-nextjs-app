@@ -1,13 +1,21 @@
+'use client'
+import { addTask } from '@/lib/actions';
 import { Button } from 'flowbite-react'
 import React from 'react'
 import { HiOutlineArrowRight } from "react-icons/hi";
 
-function index() {
+function index({idList}:{idList : string}) {
   return (
-    <form action="" >
+    <form action={addTask}>
       <div className='flex w-full items-center gap-4'>
+            <input type="hidden" value={idList} name='list_id' />
             <div className='flex-1 w-full'>
-                <input type="text" className='w-full rounded-md'/>
+                <input type="text" name='list_desc' className='w-full rounded-md' onKeyDown={(e)=>{
+                  console.log(e.code)
+                  if(e.code === 'Enter'){
+                    addTask
+                  }
+                }}/>
             </div>
             <Button className='' type='submit'>
               <HiOutlineArrowRight className="h-6 w-6" />
