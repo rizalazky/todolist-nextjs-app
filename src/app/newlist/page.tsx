@@ -7,7 +7,7 @@ function Page() {
   return (
     
       <Modal >
-        <FormAddNewList value=''/>
+        <FormAddNewList listDesc='' id='' action={addList}/>
       </Modal>
    
   )

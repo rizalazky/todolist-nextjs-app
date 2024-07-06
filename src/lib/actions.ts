@@ -80,6 +80,37 @@ import { permanentRedirect, redirect } from "next/navigation";
     revalidatePath('/')
     permanentRedirect('/');
   }
+
+  export async function updateList(formData:FormData){
+    try {
+      const sessionData = await getSessionData();
+      const token = await sessionData.token
+      const apiAddUpdateList = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/list/${formData.get('id')}`,{
+        headers : {
+          'Content-Type' : 'application/json',
+          "Authorization" : `Bearer ${token}`
+        },
+        method : 'PUT',
+        body:JSON.stringify({
+          listDesc : formData.get('list_desc'),
+        })
+      })
+     
+      if(!apiAddUpdateList.ok){
+        return false;
+      }
+      const response = await apiAddUpdateList.json()
+      console.log(response)
+      if(response.status == 'FAIL'){
+        return false;
+      }
+    } catch (error) {
+      console.log(error)
+      return error;
+    }
+    revalidatePath('/')
+    permanentRedirect(`/list/${formData.get('id')}`);
+  }
  
 export async function authenticate(_currentState: unknown,formData: FormData) {
   
