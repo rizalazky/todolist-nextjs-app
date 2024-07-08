@@ -5,8 +5,8 @@ import React from 'react'
 
 function Page() {
   return (
-      <Modal >
-        <FormAddNewList value=''/>
+      <Modal headerTitle='Add New List'>
+        <FormAddNewList listDesc='' id='' action={addList}/>
       </Modal>
   )
 }

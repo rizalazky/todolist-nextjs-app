@@ -5,7 +5,8 @@ import React from 'react'
 
 interface ItemInterface {
   list_desc:string,
-  id:number
+  id:number,
+  completed : boolean
 }
 
 async function Main({items,pageTitle,id}:{items:ItemInterface[],pageTitle :string,id:string}) {
@@ -17,7 +18,7 @@ async function Main({items,pageTitle,id}:{items:ItemInterface[],pageTitle :strin
           <HeaderMain pageTitle={pageTitle} id={id}/>
           
           <main className="flex flex-col w-full h-full px-6">
-            <SortableContainer tasks={items}/>
+            <SortableContainer tasks={items} idList={Number(id)}/>
           </main>
           <div className="sticky bottom-0 px-6 py-4 w-full">
             <Input idList={id}/>

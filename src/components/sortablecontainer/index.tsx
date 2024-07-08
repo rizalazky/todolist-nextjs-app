@@ -8,6 +8,7 @@ import {
   useSensor,
   useSensors,
   DragEndEvent,
+  MouseSensor,
 } from '@dnd-kit/core';
 import {
   arrayMove,
@@ -20,12 +21,15 @@ import { SortableItem } from '..';
 
 interface TaskInterface {
     id : number,
-    list_desc : string
+    list_desc : string,
+    completed : boolean
 }
 
-export default function index({tasks}:{tasks : TaskInterface[]}) {
+export default function index({tasks,idList}:{tasks : TaskInterface[],idList:number}) {
   const [items, setItems] = useState<TaskInterface[]>(tasks);
 
+
+  
   useEffect(()=>{
     setItems(tasks)
   },[tasks])
@@ -35,7 +39,13 @@ export default function index({tasks}:{tasks : TaskInterface[]}) {
     useSensor(PointerSensor),
     useSensor(KeyboardSensor, {
       coordinateGetter: sortableKeyboardCoordinates,
-    })
+    }),
+    // useSensor(MouseSensor,{
+    //   activationConstraint :{
+    //     distance: 5,
+    //     delay : 1000
+    //   }
+    // })
   );
 
   function handleDragEnd(event:DragEndEvent) {
@@ -61,7 +71,7 @@ export default function index({tasks}:{tasks : TaskInterface[]}) {
         items={items}
         strategy={verticalListSortingStrategy}
       >
-        {items.map(item => <SortableItem key={item.id} id={item.id} list_desc={item.list_desc} />)}
+        {items.map(item => <SortableItem key={item.id} idList={idList} id={item.id} list_desc={item.list_desc} isComplete={item.completed} />)}
       </SortableContext>
     </DndContext>
   );

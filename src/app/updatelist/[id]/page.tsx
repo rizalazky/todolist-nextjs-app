@@ -11,7 +11,7 @@ async function Page({params}:{params:{id : string}}) {
 
   return (
     
-      <Modal >
+      <Modal headerTitle='Update List'>
         <FormAddNewList listDesc={pageTitle} id={idList} action={updateList}/>
       </Modal>
    

@@ -6,7 +6,7 @@ import React from 'react'
 function Page() {
   return (
     
-      <Modal >
+      <Modal headerTitle='Add New List'>
         <FormAddNewList listDesc='' id='' action={addList}/>
       </Modal>
    

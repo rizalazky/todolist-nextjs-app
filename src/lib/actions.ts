@@ -158,6 +158,39 @@ import { permanentRedirect, redirect } from "next/navigation";
     // revalidatePath(`/`)
     redirect(`/list/${idList}`);
   }
+
+  export async function markAsCompletedTask(idList :number,id:number){
+    console.log('id',id)
+    try {
+      const sessionData = await getSessionData();
+      const token = await sessionData.token
+      const apiMarkAsCompleted = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/${idList}/items/${id}/complete`,{
+        headers : {
+          'Content-Type' : 'application/json',
+          "Authorization" : `Bearer ${token}`
+        },
+        method : 'PUT',
+      })
+     
+      if(!apiMarkAsCompleted.ok){
+        return false;
+      }
+      const response = await apiMarkAsCompleted.json()
+      console.log('resp',response)
+      if(response.status == 'FAIL'){
+        return false;
+      }
+
+      
+    } catch (error) {
+      console.log('err',error)
+      return error;
+    }
+
+    // revalidatePath(`/`)
+    redirect(`/list/${idList}`);
+    return false;
+  }
  
 export async function authenticate(_currentState: unknown,formData: FormData) {
   

@@ -1,11 +1,8 @@
 import type { Metadata } from "next";
-import { Roboto } from "next/font/google";
-import "./globals.css";
 // import { Navbar, Sidebar } from "@/components";
 import React from "react";
 
 
-const inter = Roboto({ subsets : ['latin'] ,weight : '400'});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -22,11 +19,10 @@ export default function RootLayout({
 
   
   return (
-    <html lang="en">
-      <body className={`${inter.className} flex max-h-screen h-screen overflow-y-hidden`}>
+    
+      <div className={`flex max-h-screen h-screen overflow-y-hidden w-full`}>
         {children}
         {modal}
-      </body>
-    </html>
+      </div>
   );
 }
