@@ -1,4 +1,4 @@
-import { ContainerList, HeaderMain, Input, Sidebar } from '@/components';
+import {  HeaderMain, Input, Sidebar, SortableContainer } from '@/components';
 import { getList } from '@/lib/actions';
 import { Dropdown } from 'flowbite-react';
 import React from 'react'
@@ -17,7 +17,7 @@ async function Main({items,pageTitle,id}:{items:ItemInterface[],pageTitle :strin
           <HeaderMain pageTitle={pageTitle} id={id}/>
           
           <main className="flex flex-col w-full h-full px-6">
-            <ContainerList items={items}/>
+            <SortableContainer tasks={items}/>
           </main>
           <div className="sticky bottom-0 px-6 py-4 w-full">
             <Input idList={id}/>
