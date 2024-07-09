@@ -159,6 +159,34 @@ import { permanentRedirect, redirect } from "next/navigation";
     redirect(`/list/${idList}`);
   }
 
+  export async function getTaskDetail(idList:string,id:string){
+    try {
+      const sessionData = await getSessionData();
+      const token = await sessionData.token
+      const apiGetTaskDetail = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/${idList}/items/${id}/complete`,{
+        headers : {
+          'Content-Type' : 'application/json',
+          "Authorization" : `Bearer ${token}`
+        },
+        method : 'PUT',
+      })
+     
+      if(!apiGetTaskDetail.ok){
+        return false;
+      }
+      const response = await apiGetTaskDetail.json()
+      
+      if(response.status == 'FAIL'){
+        return false;
+      }
+
+      return response;
+    } catch (error) {
+      console.log('err',error)
+      return error;
+    }
+  }
+
   export async function markAsCompletedTask(idList :number,id:number){
     console.log('id',id)
     try {
