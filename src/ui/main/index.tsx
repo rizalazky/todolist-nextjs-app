@@ -14,13 +14,13 @@ async function Main({items,pageTitle,id}:{items:ItemInterface[],pageTitle :strin
   return (
     <>
       <Sidebar lists={getListAPI.data}/>
-      <div className="flex-1 overflow-scroll">
+      <div className="flex-1 overflow-scroll flex flex-col">
           <HeaderMain pageTitle={pageTitle} id={id}/>
           
-          <main className="flex flex-col w-full h-full px-6">
+          <main className="flex flex-col w-full h-full px-6 py-4 overflow-y-scroll">
             <SortableContainer tasks={items} idList={Number(id)}/>
           </main>
-          <div className="sticky bottom-0 px-6 py-4 w-full">
+          <div className="sticky bottom-0 bg-white px-6 py-4 w-full">
             <Input idList={id}/>
           </div>
       </div>
