@@ -1,13 +1,16 @@
 
-import { Modal } from '@/components'
+import { getTaskDetail } from '@/lib/actions'
+import TaskDetail from '@/ui/taskdetail'
 import React from 'react'
 
-function page({params}:{params :{id:string}}) {
+async function page({params}:{params :{id:string ,slug :string}}) {
     console.log('id',params.id)
+    console.log('slug',params.slug)
+    const taskDetail = await getTaskDetail(params.slug,params.id)
+
+    console.log('TASK DETAIL',taskDetail)
   return (
-    <Modal headerTitle='LIST DESC'>
-      <div>page modal {params.id}</div>
-    </Modal>
+   <TaskDetail taskDetail={taskDetail.data}/>
   )
 }
 
