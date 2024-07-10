@@ -10,7 +10,7 @@ async function page({params}:{params :{id:string ,slug :string}}) {
 
     console.log('TASK DETAIL',taskDetail)
   return (
-   <TaskDetail taskDetail={taskDetail.data}/>
+    <TaskDetail taskDetail={taskDetail.data} listId={params.slug}/>
   )
 }
 

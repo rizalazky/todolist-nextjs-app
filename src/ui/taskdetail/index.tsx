@@ -1,5 +1,6 @@
 'use client'
 import { Modal } from '@/components'
+import { deleteTask } from '@/lib/actions';
 import { Textarea, TextInput } from 'flowbite-react';
 import React, { useState } from 'react'
 import { HiArrowSmRight, HiSun, HiDatabase, HiHome, HiTable, HiCheckCircle, HiStar, HiX,HiTrash  } from "react-icons/hi";
@@ -19,7 +20,7 @@ const Box = ({label,icon,onClick,className} :{label:string, icon : React.ReactNo
     )
 }
 
-function TaskDetail({taskDetail}:{taskDetail:any}) {
+function TaskDetail({taskDetail,listId}:{taskDetail:any,listId:string}) {
     const [openModalDelete, setOpenModalDelete] = useState(false);
     const handleClickBox = (actionType:string)=>{
         
@@ -48,7 +49,7 @@ function TaskDetail({taskDetail}:{taskDetail:any}) {
                 <Box label='' icon={<HiTrash/>} className={'text-red-500'} onClick={()=>setOpenModalDelete(true)}/>
             </div>
         </Modal>
-        <Modal isModalDelete children='' headerTitle='' onCloseModal={()=>setOpenModalDelete(false)} openModal={openModalDelete}/>
+        <Modal isModalDelete children='' headerTitle='' onCloseModal={()=>setOpenModalDelete(false)} openModal={openModalDelete} onSubmitDelete={()=>deleteTask(listId,taskDetail.id)}/>
     </>
   )
 }
