@@ -163,12 +163,12 @@ import { permanentRedirect, redirect } from "next/navigation";
     try {
       const sessionData = await getSessionData();
       const token = await sessionData.token
-      const apiGetTaskDetail = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/${idList}/items/${id}/complete`,{
+      const apiGetTaskDetail = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/${idList}/items/${id}`,{
         headers : {
           'Content-Type' : 'application/json',
           "Authorization" : `Bearer ${token}`
         },
-        method : 'PUT',
+        method : 'GET',
       })
      
       if(!apiGetTaskDetail.ok){
@@ -187,17 +187,23 @@ import { permanentRedirect, redirect } from "next/navigation";
     }
   }
 
-  export async function markAsCompletedTask(idList :number,id:number){
+  export async function updateTask(idList :number,id:number,formData:FormData){
     console.log('completed fire : ==> id',id)
+    console.log('FORM DATA',formData)
+    let data : any = {}
+    formData.forEach((value,key)=> {data[key] = value} )
+    console.log(data);
+    // return false;
     try {
       const sessionData = await getSessionData();
       const token = await sessionData.token
-      const apiMarkAsCompleted = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/${idList}/items/${id}/complete`,{
+      const apiMarkAsCompleted = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/${idList}/items/${id}`,{
         headers : {
           'Content-Type' : 'application/json',
           "Authorization" : `Bearer ${token}`
         },
         method : 'PUT',
+        body:JSON.stringify(data)
       })
      
       if(!apiMarkAsCompleted.ok){

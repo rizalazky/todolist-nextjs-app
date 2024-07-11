@@ -2,14 +2,14 @@
 import React from 'react';
 import {useSortable} from '@dnd-kit/sortable';
 import {CSS} from '@dnd-kit/utilities';
-import { markAsCompletedTask } from '@/lib/actions';
+import {  updateTask } from '@/lib/actions';
 import { HiDotsHorizontal, HiStar } from "react-icons/hi";
 import { MdCheckCircle } from "react-icons/md";
 import { FaRegStar } from "react-icons/fa";
 import { MdOutlineDragIndicator, MdCheckCircleOutline } from "react-icons/md";
 import Link from 'next/link';
 
-export default function index(props:{idList :number,id:number, list_desc : string, isComplete : boolean}) {
+export default function index(props:{idList :number,id:number, list_desc : string, isComplete : boolean, isImportant:boolean}) {
   const {
     attributes,
     listeners,
@@ -25,12 +25,15 @@ export default function index(props:{idList :number,id:number, list_desc : strin
 
 
   const markAsCompleted = ()=>{
-    
-    markAsCompletedTask(props.idList,props.id)
+    const formData = new FormData();
+    formData.append('completed','true');
+    updateTask(props.idList,props.id,formData)
   }
 
   const markAsImportant =()=>{
-    
+    const formData = new FormData();
+    formData.append('important','true');
+    updateTask(props.idList,props.id,formData)
   }
   
   return (
@@ -53,7 +56,7 @@ export default function index(props:{idList :number,id:number, list_desc : strin
             {props.list_desc}
           </Link>
         </div>
-        <div className='mr-2'>
+        <div className={`mr-2 ${props.isImportant ? 'text-yellow-400' : 'text-gray-500'}`} onClick={markAsImportant}>
             
             <FaRegStar size={''}/>
            

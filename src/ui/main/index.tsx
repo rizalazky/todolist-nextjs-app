@@ -6,7 +6,8 @@ import React from 'react'
 interface ItemInterface {
   list_desc:string,
   id:number,
-  completed : boolean
+  completed : boolean,
+  important : boolean,
 }
 
 async function Main({items,pageTitle,id}:{items:ItemInterface[],pageTitle :string,id:string}) {
