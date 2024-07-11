@@ -1,6 +1,3 @@
-import {  ContainerList, Input, Navbar, Sidebar } from "@/components";
-import { getList } from "../lib/actions";
-import Link from "next/link";
 import Main from "@/ui/main";
 
 
@@ -11,7 +8,7 @@ export default async function Home() {
   
 
   return (
-    <Main pageTitle="Main" items={[]}/>
+    <Main pageTitle="Main" id="" items={[]}/>
   );
 }
 
