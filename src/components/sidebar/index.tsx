@@ -36,7 +36,7 @@ export default function Component({lists}:{lists : taskList[]}) {
                         <Sidebar.Item href="/list/important" icon={FaRegStar} labelColor="dark">
                             Important
                         </Sidebar.Item>
-                        <Sidebar.Item href="all" icon={HiDatabase} label="3">
+                        <Sidebar.Item href="/list/all" icon={HiDatabase} label="3">
                             All
                         </Sidebar.Item>
                         <Sidebar.Item href="/list/completed" icon={HiCheckCircle}>

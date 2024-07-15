@@ -8,8 +8,9 @@ import Modal from './modal'
 import HeaderMain from './headermain'
 import SortableContainer from './sortablecontainer'
 import SortableItem from './sortableitem'
+import AccordionSortable from './accordionsortable'
 
 
 export{
-    Sidebar, Navbar, Card, Input,AddNewListButton,Modal,HeaderMain,SortableContainer,SortableItem
+    Sidebar, Navbar, Card, Input,AddNewListButton,Modal,HeaderMain,SortableContainer,SortableItem,AccordionSortable
 }
