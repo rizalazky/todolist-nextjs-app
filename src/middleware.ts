@@ -3,7 +3,8 @@ import { getSessionData, knock } from './auth'
  
 export async function middleware(request: NextRequest) {
   const sessionData = await getSessionData();
-  const token = await sessionData.token;
+  console.log(sessionData);
+  const token = await sessionData?.token;
 
   // if (token && request.nextUrl.pathname.match('/login')) {
   //   return Response.redirect(new URL('/', request.url))
