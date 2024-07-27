@@ -42,9 +42,9 @@ export default function Component({lists}:{lists : taskList[]}) {
                         <Sidebar.Item href="/list/completed" icon={HiCheckCircle}>
                             Completed
                         </Sidebar.Item>
-                        <Sidebar.Item href="/list/task" icon={HiHome}>
+                        {/* <Sidebar.Item href="/list/task" icon={HiHome}>
                             Task
-                        </Sidebar.Item>
+                        </Sidebar.Item> */}
                         
                       </Sidebar.ItemGroup>
                       <Sidebar.ItemGroup >
